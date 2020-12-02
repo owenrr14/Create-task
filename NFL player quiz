@@ -15,7 +15,7 @@ AdamVinatieri = ["Adam Vinatieri", "He went undrafted and Played in NFL Europe f
 MarshawnLynch = ["Marshawn Lynch", "He was drafted by the Bills in 2007", "He was traded to the Seahawks after suffering a minor preseason injury", "He loves Skittles", "He caused the Beastquake", "He is known as Beast Mode"]
 
 # player_list contains the names of the above players for randomized picking
-player_list = ["TomBrady", "JoeMontana", "PaytonManning", "OdellBeckhamJr", "TedyBruschi", "OJSimpson", "MarkSanchez", "AntonioBrown", "AdamVinatieri", "MarshawnLynch"]
+player_list = ["TomBrady"]
 
 
 def random_player():
@@ -75,29 +75,27 @@ def formality(guess):
 
 def welcome():
     # welcome() describes how the game is played
+    print()
     print("Welcome to NFL Player Quiz!")
-    print("You will get a hint and try to guess the player, if the guess is wrong, you will get a new hint.")
+    print("You goal is to guess the NFL player that the hint corresponds to.")
+    print("Guesses must include full names.")
+    print("If the guess is wrong, you will get a new hint.")
     print("If you don't have a guess, hit enter.")
     print()
     # Asks the player if they are ready to continue
-    go = input(str("Ready? Y/N "))
-    go = go.replace(" ", "")
-    if go.upper() == "Y":
-        print("Enjoy the game!")
-        print()
-        main()
-    else:
-        print("That's to bad, See you soon")
+    input(str("Ready? Hit enter to start"))
+    print()
+    main()
 
 
 def main():
     # main() initializes the important variables before running the game
     count = 1
-    total_plays = 0
-    # mplayer is set to the random list that was selected before
+    # mplayer is set to the random player with their list that was selected before
     mplayer = find_player()
     game = True
     while game:
+        print(player_list)
         # The print statement below prints the first hint but as the game goes on count will be increased
         # So it will print the 2nd, then 3rd, etc.
         print(mplayer[count])
@@ -108,29 +106,39 @@ def main():
             # If the guess was correct it stops the game and asks them to play again
             print("You guessed the player!")
             game = False
-            play_again = input(str("Do you want to play again? Y/N "))
-            if play_again.upper() == "Y":
+            if not player_list:
                 print()
-                total_plays += 1
-                main()
-            elif play_again.upper() == "N":
-                print("Bye Bye!")
-        else:
-            # If the guess was wrong, it tells them and adds one to the count so it can print the next hint
-            print("Incorrect")
-            count += 1
-            if count == 6:
-                # If the count ever exceeds the amount of hints it tells the player
-                # That they have failed and asks to play again
-                print("You never guessed the player, you lose.")
-                game = False
+                print("You have ran out of players to guess")
+                print("If you want to play again, hit the rerun button")
+            else:
                 play_again = input(str("Do you want to play again? Y/N "))
                 if play_again.upper() == "Y":
                     print()
-                    total_plays += 1
                     main()
                 elif play_again.upper() == "N":
                     print("Bye Bye!")
+        else:
+            # If the guess was wrong, it tells them and adds one to the count so it can print the next hint
+            count += 1
+            if count == 6:
+                game = False
+                # If the count ever exceeds the amount of hints it tells the player
+                # That they have failed and asks to play again
+                if not player_list:
+                    print()
+                    print("You have ran out of players to guess")
+                    print("If you want to play again, hit the rerun button")
+                else:
+                    print("You never guessed the player, you lose.")
+                    play_again = input(str("Do you want to play again? Y/N "))
+                    if play_again.upper() == "Y":
+                        print()
+                        main()
+                    elif play_again.upper() == "N":
+                        print("Bye Bye!")
+            else:
+                print("Try again")
+                print()
 
 
 if __name__ == "__main__":
