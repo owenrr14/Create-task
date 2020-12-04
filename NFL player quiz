@@ -15,7 +15,7 @@ AdamVinatieri = ["Adam Vinatieri", "He went undrafted and Played in NFL Europe f
 MarshawnLynch = ["Marshawn Lynch", "He was drafted by the Bills in 2007", "He was traded to the Seahawks after suffering a minor preseason injury", "He loves Skittles", "He caused the Beastquake", "He is known as Beast Mode"]
 
 # player_list contains the names of the above players for randomized picking
-player_list = ["TomBrady"]
+player_list = ["TomBrady", "JoeMontana", "PaytonManning", "OdellBeckhamJr", "TedyBruschi", "OJSimpson", "MarkSanchez", "AntonioBrown", "AdamVinatieri", "MarshawnLynch"]
 
 
 def random_player():
